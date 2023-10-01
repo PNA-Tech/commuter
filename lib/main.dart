@@ -1,4 +1,6 @@
-import 'package:commuter/homepage.dart';
+import 'package:commuter/screens/home_screen.dart';
+import 'package:commuter/screens/record_screen.dart';
+import 'package:commuter/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,7 +54,7 @@ class _HomeState extends State<Home> {
           NavigationDestination(icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
-      body: const [HomePage(), Text("Record"), Text("Settings")][pageIndex],
+      body: const [HomeScreen(), RecordScreen(), SettingsScreen()][pageIndex],
     );
   }
 }
