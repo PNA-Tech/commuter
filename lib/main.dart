@@ -1,3 +1,4 @@
+import 'package:commuter/activity_view.dart';
 import 'package:commuter/auth.dart';
 import 'package:commuter/clubs.dart';
 import 'package:commuter/homepage.dart';
@@ -24,6 +25,7 @@ class Commuter extends StatelessWidget {
         routes: {
           "/": (context) => const Home(),
           "/auth": (context) => const Auth(),
+          "/view": (context) => const ActivityViewPage(),
         });
   }
 }

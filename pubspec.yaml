@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   pocketbase: ^0.15.1
   shared_preferences: ^2.2.1
+  location: ^5.0.3
+  intl: ^0.18.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

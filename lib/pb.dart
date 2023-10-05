@@ -20,3 +20,32 @@ class Pb {
     initialized = true;
   }
 }
+
+class RoutePoint {
+  final double latitude;
+  final double longitude;
+  final double altitude;
+  final double speed;
+  final double time;
+
+  RoutePoint(
+      this.latitude, this.longitude, this.altitude, this.speed, this.time);
+
+  Map toJson() => {
+        'latitude': latitude,
+        'longitude': longitude,
+        'altitude': altitude,
+        'speed': speed,
+        'time': time,
+      };
+}
+
+class Activity {
+  double distance = 0;
+  DateTime start = DateTime.now(); // format yyyy-MM-dd HH:mm:ss.SSSZ
+  DateTime end = DateTime.now(); // format yyyy-MM-dd HH:mm:ss.SSSZ
+  List<RoutePoint> route = [];
+  String kind = "walk"; // carpool, bike, walk, bus, ev
+  String kindData = "{}";
+  double savings = 0;
+}
