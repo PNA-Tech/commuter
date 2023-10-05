@@ -1,6 +1,9 @@
 import 'package:commuter/auth.dart';
+import 'package:commuter/clubs.dart';
 import 'package:commuter/homepage.dart';
 import 'package:commuter/pb.dart';
+import 'package:commuter/record.dart';
+import 'package:commuter/settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -89,9 +92,9 @@ class _HomeState extends State<Home> {
       ),
       body: const [
         HomePage(),
-        Text("Record"),
-        Text("Clubs"),
-        Text("Settings")
+        RecordPage(),
+        ClubsPage(),
+        SettingsPage(),
       ][pageIndex],
     );
   }

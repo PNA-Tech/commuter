@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RecordPage extends StatefulWidget {
+  const RecordPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RecordPage> createState() => _RecordPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RecordPageState extends State<RecordPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Home page',
+            'Record page',
           ),
         ],
       ),

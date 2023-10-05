@@ -58,7 +58,7 @@ class _AuthState extends State<Auth> {
       }
       if (!error) {
         await Pb.pb.collection('users').authWithPassword(username, password);
-        Navigator.popAndPushNamed(context, "/");
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
       }
     } else {
       bool error = false;
@@ -78,7 +78,7 @@ class _AuthState extends State<Auth> {
         error = true;
       }
       if (!error) {
-        Navigator.popAndPushNamed(context, "/");
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
       }
     }
 
