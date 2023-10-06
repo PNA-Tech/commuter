@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:commuter/activity_view.dart';
+import 'package:commuter/components/activity_preview.dart';
 import 'package:commuter/pb.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -167,6 +168,28 @@ class _RecordPageState extends State<RecordPage> {
               ),
             ),
             const SizedBox(height: 20),
+            ListTile(
+              leading: const Icon(Icons.location_pin),
+              title: const Text("Speed"),
+              trailing: Chip(
+                label: Text(currentActivity.route.isNotEmpty
+                    ? "${(currentActivity.route[currentActivity.route.length - 1].speed * 2.23694) // m/s to mph
+                        .toStringAsFixed(2)} mph"
+                    : "0 mph"),
+                backgroundColor: Colors.green,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ListTile(
+              leading: const Icon(Icons.location_pin),
+              title: const Text("Time"),
+              trailing: Chip(
+                label: Text(formatDuration(
+                    DateTime.now().difference(currentActivity.start))),
+                backgroundColor: Colors.green,
+              ),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 setState(() {
@@ -179,7 +202,7 @@ class _RecordPageState extends State<RecordPage> {
             )
           ] else ...[
             Text(
-              "Congrats! You saved: ${calcSavings().toStringAsFixed(2)} kg CO2!",
+              "Congrats! You saved: ${calcSavings().toStringAsFixed(2)} pounds of CO₂!",
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

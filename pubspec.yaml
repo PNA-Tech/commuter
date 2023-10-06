@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.2.1
   location: ^5.0.3
   intl: ^0.18.1
+  flutter_map: ^5.0.0
 
 flutter_launcher_icons:
   android: "launcher_icon"

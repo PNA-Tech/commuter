@@ -19,7 +19,11 @@ class _HomePageState extends State<HomePage> {
         page: 1,
         perPage: 50,
         filter: "target.id=\"${Pb.pb.authStore.model.id}\" && kind=\"post\"",
-        sort: "-created");
+        sort: "-created",
+        expand: "activity");
+    setState(() {
+      activities = activities;
+    });
   }
 
   @override
@@ -42,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         onRefresh: refresh,
         child: ListView.builder(
           itemBuilder: (context, index) => ActivityPreview(
-            activity: activities.items[index],
+            activity: activities.items[index].expand["activity"]![0],
           ),
           itemCount: activities.items.length,
         ),
