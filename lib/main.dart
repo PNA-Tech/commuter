@@ -92,12 +92,15 @@ class _HomeState extends State<Home> {
           NavigationDestination(icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
-      body: const [
-        HomePage(),
-        RecordPage(),
-        ClubsPage(),
-        SettingsPage(),
-      ][pageIndex],
+      body: IndexedStack(
+        index: pageIndex,
+        children: const [
+          HomePage(),
+          RecordPage(),
+          ClubsPage(),
+          SettingsPage(),
+        ],
+      ),
     );
   }
 }

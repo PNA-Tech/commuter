@@ -46,6 +46,6 @@ class Activity {
   DateTime end = DateTime.now(); // format yyyy-MM-dd HH:mm:ss.SSSZ
   List<RoutePoint> route = [];
   String kind = "walk"; // carpool, bike, walk, bus, ev
-  String kindData = "{}";
+  int carpoolCount = 4;
   double savings = 0;
 }

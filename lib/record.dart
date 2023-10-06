@@ -36,7 +36,6 @@ class _RecordPageState extends State<RecordPage> {
   bool saving = false;
   bool uploading = false;
   Activity currentActivity = Activity();
-  int carpoolCount = 4; // Metadata for carpool activity
 
   void init() async {
     Location location = Location();
@@ -109,7 +108,7 @@ class _RecordPageState extends State<RecordPage> {
           DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ").format(currentActivity.start),
       "end": DateFormat("yyyy-MM-dd HH:mm:ss.SSSZ").format(currentActivity.end),
       "kind": currentActivity.kind,
-      "kind_data": currentActivity.kindData,
+      "carpool_count": currentActivity.carpoolCount,
       "route": jsonEncode(currentActivity.route),
       "savings": calcSavings()
     };
@@ -195,6 +194,7 @@ class _RecordPageState extends State<RecordPage> {
                 DropdownMenuEntry(value: "walk", label: "Walk"),
                 DropdownMenuEntry(value: "bus", label: "Bus"),
                 DropdownMenuEntry(value: "ev", label: "Electric Vehicle"),
+                DropdownMenuEntry(value: "hybrid", label: "Hybrid Vehicle"),
               ],
               onSelected: (kind) {
                 setState(() {
@@ -203,19 +203,19 @@ class _RecordPageState extends State<RecordPage> {
               },
               width: MediaQuery.of(context).size.width - 20,
             ),
-            if (currentActivity.kind == "carpool") ...[
+            if (currentActivity.kind == "carpool" ||
+                currentActivity.kind == "hybrid" ||
+                currentActivity.kind == "ev") ...[
               const SizedBox(height: 20),
               const Text("Carpool Members"),
               Slider(
-                value: carpoolCount.toDouble(),
+                value: currentActivity.carpoolCount.toDouble(),
                 max: 8,
                 divisions: 8,
-                label: carpoolCount.toString(),
+                label: currentActivity.carpoolCount.toString(),
                 onChanged: (double value) {
                   setState(() {
-                    carpoolCount = value.toInt();
-                    currentActivity.kindData =
-                        "{\"carpoolCount\": $carpoolCount}";
+                    currentActivity.carpoolCount = value.toInt();
                   });
                 },
               ),
