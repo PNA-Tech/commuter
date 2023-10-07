@@ -20,34 +20,47 @@ String formatDuration(Duration d) {
   return "${d.inMinutes}m";
 }
 
-class _ActivityPreviewState extends State<ActivityPreview> {
-  late LatLngBounds bounds;
+class ActivityMapData {
+  final LatLngBounds bounds;
+  final List<LatLng> points;
+
+  ActivityMapData(this.bounds, this.points);
+}
+
+ActivityMapData getActivityBounds(RecordModel activity) {
+  double topLat = -180;
+  double bottomLat = 180;
+  double leftLon = 180;
+  double rightLon = -180;
   List<LatLng> points = [];
+  for (var point in activity.data["route"]) {
+    if (point["latitude"] > topLat) {
+      topLat = point["latitude"];
+    }
+    if (point["latitude"] < bottomLat) {
+      bottomLat = point["latitude"];
+    }
+    if (point["longitude"] > rightLon) {
+      rightLon = point["longitude"];
+    }
+    if (point["longitude"] < leftLon) {
+      leftLon = point["longitude"];
+    }
+    points.add(LatLng(point["latitude"], point["longitude"]));
+  }
+  return ActivityMapData(
+      LatLngBounds(LatLng(topLat - 0.03, leftLon - 0.03),
+          LatLng(bottomLat + 0.03, rightLon + 0.03)),
+      points);
+}
+
+class _ActivityPreviewState extends State<ActivityPreview> {
+  late ActivityMapData mapData;
 
   @override
   void initState() {
     super.initState();
-    double topLat = -180;
-    double bottomLat = 180;
-    double leftLon = 180;
-    double rightLon = -180;
-    for (var point in widget.activity.data["route"]) {
-      if (point["latitude"] > topLat) {
-        topLat = point["latitude"];
-      }
-      if (point["latitude"] < bottomLat) {
-        bottomLat = point["latitude"];
-      }
-      if (point["longitude"] > rightLon) {
-        rightLon = point["longitude"];
-      }
-      if (point["longitude"] < leftLon) {
-        leftLon = point["longitude"];
-      }
-      points.add(LatLng(point["latitude"], point["longitude"]));
-    }
-    bounds = LatLngBounds(LatLng(topLat - 0.03, leftLon - 0.03),
-        LatLng(bottomLat + 0.03, rightLon + 0.03));
+    mapData = getActivityBounds(widget.activity);
   }
 
   @override
@@ -66,7 +79,7 @@ class _ActivityPreviewState extends State<ActivityPreview> {
               height: MediaQuery.of(context).size.height / 5,
               child: FlutterMap(
                 options: MapOptions(
-                  bounds: bounds,
+                  bounds: mapData.bounds,
                   interactiveFlags: InteractiveFlag.none,
                 ),
                 children: [
@@ -79,7 +92,7 @@ class _ActivityPreviewState extends State<ActivityPreview> {
                     polylines: [
                       Polyline(
                         strokeWidth: 3,
-                        points: points,
+                        points: mapData.points,
                         color: Colors.blue,
                       ),
                     ],
