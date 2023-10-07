@@ -59,8 +59,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (initializing) {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text("CO₂mmuter"),
+        ),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
     if (!Pb.pb.authStore.isValid) {
