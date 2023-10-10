@@ -17,7 +17,7 @@ class UserViewPage extends StatefulWidget {
 
 class _UserViewPageState extends State<UserViewPage> {
   late RecordModel user;
-  bool loading = true;
+  bool loading = false;
   bool loaded = false;
 
   void init(UserViewArgs args) async {
@@ -65,7 +65,7 @@ class _UserViewPageState extends State<UserViewPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              'User: ${user.data["name"]}',
+              'User: ${user.data["username"]}',
             ),
           ],
         ),

@@ -17,7 +17,7 @@ class ClubViewPage extends StatefulWidget {
 
 class _ClubViewPageState extends State<ClubViewPage> {
   late RecordModel club;
-  bool loading = true;
+  bool loading = false;
   bool loaded = false;
 
   void init(ClubViewArgs args) async {
@@ -25,7 +25,7 @@ class _ClubViewPageState extends State<ClubViewPage> {
       loading = true;
     });
 
-    club = await Pb.pb.collection("users").getOne(args.clubId);
+    club = await Pb.pb.collection("clubs").getOne(args.clubId);
 
     setState(() {
       loading = false;

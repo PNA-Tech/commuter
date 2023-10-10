@@ -1,9 +1,12 @@
 import 'package:commuter/activity_view.dart';
 import 'package:commuter/auth.dart';
+import 'package:commuter/club_new.dart';
+import 'package:commuter/club_view.dart';
 import 'package:commuter/clubs.dart';
 import 'package:commuter/homepage.dart';
 import 'package:commuter/pb.dart';
 import 'package:commuter/record.dart';
+import 'package:commuter/user_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +28,9 @@ class Commuter extends StatelessWidget {
           "/": (context) => const Home(),
           "/auth": (context) => const Auth(),
           "/view": (context) => const ActivityViewPage(),
+          "/userview": (context) => const UserViewPage(),
+          "/clubview": (context) => const ClubViewPage(),
+          "/clubnew": (context) => const ClubNewPage(),
         });
   }
 }
