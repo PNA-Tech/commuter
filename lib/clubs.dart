@@ -12,7 +12,7 @@ class _ClubsPageState extends State<ClubsPage> {
   Widget build(BuildContext context) {
     return const Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Text(
             'Clubs page',
