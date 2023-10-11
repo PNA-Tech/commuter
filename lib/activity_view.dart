@@ -145,7 +145,7 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 2,
             child: FlutterMap(
               options: MapOptions(
                 bounds: mapData.bounds,
@@ -178,7 +178,7 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
                     textAlign: TextAlign.center,
                   ),
                   subtitle: Text(
-                    "${activity.data["length"].toStringAsFixed(2)} mi",
+                    "${activity.data["length"].toStringAsFixed(2)} miles",
                     textAlign: TextAlign.center,
                   ),
                 ),

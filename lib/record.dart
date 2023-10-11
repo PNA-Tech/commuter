@@ -153,6 +153,7 @@ class _RecordPageState extends State<RecordPage> {
       saving = false;
       recording = false;
     });
+    // ignore: use_build_context_synchronously
     Navigator.pushNamed(context, "/view",
         arguments: ActivityViewArgs(activity.id));
   }
@@ -203,7 +204,7 @@ class _RecordPageState extends State<RecordPage> {
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: const Icon(Icons.location_pin),
+              leading: const Icon(Icons.timer),
               title: const Text("Time"),
               trailing: Chip(
                 label: Text(formatDuration(
