@@ -1,5 +1,6 @@
 import 'package:commuter/components/user_search.dart';
 import 'package:commuter/pb.dart';
+import 'package:commuter/user_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbase/pocketbase.dart';
@@ -126,10 +127,13 @@ class _ClubViewPageState extends State<ClubViewPage> {
                 itemBuilder: (BuildContext context, int index) {
                   final user = club.data["members"][index];
                   return ListTile(
-                    title: Text(usernames[user]!),
-                    trailing: Text("${scores[user]!.toStringAsFixed(2)} lb",
-                        style: DefaultTextStyle.of(context).style),
-                  );
+                      title: Text(usernames[user]!),
+                      trailing: Text("${scores[user]!.toStringAsFixed(2)} lb",
+                          style: DefaultTextStyle.of(context).style),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/userview",
+                            arguments: UserViewArgs(user));
+                      });
                 },
                 separatorBuilder: (_, __) => const Divider(),
               ),
