@@ -38,6 +38,15 @@ class _RecordPageState extends State<RecordPage> {
   bool uploading = false;
   Activity currentActivity = Activity();
 
+  final emissionsPerMile = const {
+    "carpool": 0.603,
+    "bike": 0.057,
+    "walk": 0.085,
+    "bus": 0.344,
+    "ev": 0.167,
+    "hybrid": 0.241,
+  };
+
   void init() async {
     Location location = Location();
     bool serviceEnabled;
@@ -92,8 +101,17 @@ class _RecordPageState extends State<RecordPage> {
   }
 
   double calcSavings() {
-    // TODO: Research
-    return 0;
+    double original = currentActivity.distance *
+        emissionsPerMile["carpool"]!; // Emissions if using car
+    double real = currentActivity.distance *
+        emissionsPerMile[currentActivity.kind]!; // Emissions if using kind
+    // Account for carpool
+    if (currentActivity.kind == "carpool" ||
+        currentActivity.kind == "hybrid" ||
+        currentActivity.kind == "ev") {
+      real /= currentActivity.carpoolCount;
+    }
+    return original - real;
   }
 
   void save() async {
@@ -202,7 +220,7 @@ class _RecordPageState extends State<RecordPage> {
             )
           ] else ...[
             Text(
-              "Congrats! You saved: ${calcSavings().toStringAsFixed(2)} pounds of CO₂!",
+              "Congrats! You saved ${calcSavings().toStringAsFixed(2)} pounds of CO₂!",
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
@@ -233,6 +251,7 @@ class _RecordPageState extends State<RecordPage> {
               const Text("Carpool Members"),
               Slider(
                 value: currentActivity.carpoolCount.toDouble(),
+                min: 1,
                 max: 8,
                 divisions: 8,
                 label: currentActivity.carpoolCount.toString(),

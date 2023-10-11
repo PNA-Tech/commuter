@@ -64,6 +64,19 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
         "post": activity.id,
         "author": Pb.pb.authStore.model.id,
       });
+
+      // Push to feed
+      final followers = await Pb.pb.collection('users').getFullList(
+            filter: "following.id ?= \"${Pb.pb.authStore.model.id}\"",
+          );
+      for (final follower in followers) {
+        await Pb.pb.collection('feed').create(body: {
+          "target": follower.id,
+          "activity": activity.id,
+          "kind": "like",
+          "author": Pb.pb.authStore.model.id,
+        });
+      }
     }
     loadLikes();
   }
