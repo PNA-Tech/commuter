@@ -1,4 +1,5 @@
 import 'package:commuter/club_view.dart';
+import 'package:commuter/components/user_search.dart';
 import 'package:commuter/pb.dart';
 import 'package:commuter/user_view.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,6 @@ class ClubsPage extends StatefulWidget {
 }
 
 class _ClubsPageState extends State<ClubsPage> {
-  Future<ResultList<RecordModel>> search(String query) async {
-    return Pb.pb.collection("users").getList(
-          page: 1,
-          perPage: 50,
-          filter: 'username~"$query"',
-          sort: "+created",
-        );
-  }
-
   bool loading = true;
   late ResultList<RecordModel> clubs;
 
@@ -58,44 +50,13 @@ class _ClubsPageState extends State<ClubsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SearchAnchor.bar(
-              suggestionsBuilder:
-                  (BuildContext context, SearchController controller) {
-                final searchFuture = search(controller.text);
-                return [
-                  FutureBuilder(
-                    future: searchFuture,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        final list = snapshot.data;
-                        if (list != null) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: list.items.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return ListTile(
-                                  title:
-                                      Text(list.items[index].data["username"]),
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      "/userview",
-                                      arguments:
-                                          UserViewArgs(list.items[index].id),
-                                    );
-                                  });
-                            },
-                          );
-                        }
-                      }
-                      return const LinearProgressIndicator();
-                    },
-                  )
-                ];
-              },
-              barHintText: "Search users",
-            ),
+            UserSearch(onTap: (id) async {
+              await Navigator.pushNamed(
+                context,
+                "/userview",
+                arguments: UserViewArgs(id),
+              );
+            }),
             const SizedBox(height: 10),
             const Divider(),
             Expanded(
