@@ -191,7 +191,7 @@ class _RecordPageState extends State<RecordPage> {
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: const Icon(Icons.location_pin),
+              leading: const Icon(Icons.speed),
               title: const Text("Speed"),
               trailing: Chip(
                 label: Text(currentActivity.route.isNotEmpty
