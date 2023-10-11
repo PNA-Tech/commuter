@@ -55,7 +55,10 @@ class _ClubNewPageState extends State<ClubNewPage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: loading ? null : create,
-              child: const Text('Create Club'),
+              child: const Text(
+                'Create Club',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

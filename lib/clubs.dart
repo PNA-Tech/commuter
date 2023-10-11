@@ -46,7 +46,7 @@ class _ClubsPageState extends State<ClubsPage> {
 
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -65,7 +65,10 @@ class _ClubsPageState extends State<ClubsPage> {
                 child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(clubs.items[index].data["name"]),
+                      title: Text(
+                        clubs.items[index].data["name"],
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
                       onTap: () {
                         Navigator.pushNamed(
                           context,
@@ -77,7 +80,7 @@ class _ClubsPageState extends State<ClubsPage> {
                   },
                   itemCount: clubs.items.length,
                   separatorBuilder: (context, index) {
-                    return Divider();
+                    return const Divider();
                   },
                 ),
               ),
@@ -90,7 +93,10 @@ class _ClubsPageState extends State<ClubsPage> {
                   refresh();
                 });
               },
-              label: const Text("Create Club"),
+              label: const Text(
+                "Create Club",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

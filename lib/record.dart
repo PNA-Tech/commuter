@@ -174,7 +174,10 @@ class _RecordPageState extends State<RecordPage> {
                     currentActivity = Activity();
                   });
                 },
-                child: const Text('Record Activity'),
+                child: const Text(
+                  'Record Activity',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ] else if (recording && !saving) ...[
@@ -217,7 +220,10 @@ class _RecordPageState extends State<RecordPage> {
                   currentActivity.end = DateTime.now();
                 });
               },
-              child: const Text('Stop Recording'),
+              child: const Text(
+                'Stop Recording',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ] else ...[
             Text(
