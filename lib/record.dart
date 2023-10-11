@@ -38,6 +38,7 @@ class _RecordPageState extends State<RecordPage> {
   bool uploading = false;
   Activity currentActivity = Activity();
 
+  // https://ourworldindata.org/travel-carbon-footprint
   final emissionsPerMile = const {
     "carpool": 0.603,
     "bike": 0.057,
