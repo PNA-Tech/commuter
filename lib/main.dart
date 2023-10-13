@@ -22,7 +22,9 @@ class Commuter extends StatelessWidget {
     return MaterialApp(
         title: 'CO₂mmuter',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.lightGreen,
+          ),
         ),
         routes: {
           "/": (context) => const Home(),

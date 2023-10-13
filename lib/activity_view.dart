@@ -122,7 +122,9 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("CO₂mmuter"),
+          title: const Text(
+            "CO₂mmuter",
+          ),
         ),
         body: const Center(child: CircularProgressIndicator()),
       );
@@ -145,7 +147,7 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 2,
+            height: MediaQuery.of(context).size.height / 2.5,
             child: FlutterMap(
               options: MapOptions(
                 bounds: mapData.bounds,

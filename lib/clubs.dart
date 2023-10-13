@@ -58,7 +58,9 @@ class _ClubsPageState extends State<ClubsPage> {
               );
             }),
             const SizedBox(height: 10),
-            const Divider(),
+            const Divider(
+              height: 2,
+            ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: refresh,
@@ -86,7 +88,7 @@ class _ClubsPageState extends State<ClubsPage> {
               ),
             ),
             const SizedBox(height: 10),
-            OutlinedButton.icon(
+            FilledButton.icon(
               icon: const Icon(Icons.add),
               onPressed: () {
                 Navigator.pushNamed(context, "/clubnew").then((_) {
@@ -95,7 +97,7 @@ class _ClubsPageState extends State<ClubsPage> {
               },
               label: const Text(
                 "Create Club",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                // style: TextStyle(fontWeight: FontWeight.bold),
               ),
             )
           ],

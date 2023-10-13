@@ -167,21 +167,34 @@ class _RecordPageState extends State<RecordPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           if (!recording && !saving) ...[
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    recording = true;
-                    currentActivity = Activity();
-                  });
-                },
-                child: const Text(
-                  'Record Activity',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+            Expanded(
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      recording = true;
+                      currentActivity = Activity();
+                    });
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.play_arrow),
+                      SizedBox(width: 5),
+                      Text(
+                        'Record Activity',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
+            ),
           ] else if (recording && !saving) ...[
+            const SizedBox(
+              height: 5,
+            ),
+            // Looks better with tiny bit of spacing
             ListTile(
               leading: const Icon(Icons.location_pin),
               title: const Text("Distance"),
@@ -223,7 +236,7 @@ class _RecordPageState extends State<RecordPage> {
               },
               child: const Text(
                 'Stop Recording',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                // style: TextStyle(fontWeight: FontWeight.bold),
               ),
             )
           ] else ...[
