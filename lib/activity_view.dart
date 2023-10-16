@@ -147,7 +147,7 @@ class _ActivityViewPageState extends State<ActivityViewPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 2.5,
+            height: MediaQuery.of(context).size.height / 2,
             child: FlutterMap(
               options: MapOptions(
                 bounds: mapData.bounds,
