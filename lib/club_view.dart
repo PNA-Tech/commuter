@@ -115,11 +115,13 @@ class _ClubViewPageState extends State<ClubViewPage> {
               const SizedBox(height: 20),
             ],
             const ListTile(
-                title: Text("Member",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                trailing: Text("CO₂ saved",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 14))),
+              title:
+                  Text("Member", style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(
+                "CO₂ saved",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
+            ),
             const Divider(),
             Expanded(
               child: ListView.separated(

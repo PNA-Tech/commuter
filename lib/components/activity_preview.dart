@@ -110,7 +110,7 @@ class _ActivityPreviewState extends State<ActivityPreview> {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      "${widget.activity.data["length"].toStringAsFixed(2)} mi",
+                      "${widget.activity.data["length"].toStringAsFixed(2)} miles",
                       textAlign: TextAlign.center,
                     ),
                   ),

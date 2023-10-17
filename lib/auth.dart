@@ -92,7 +92,7 @@ class _AuthState extends State<Auth> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 30),
         child: Center(
           child: Form(
             key: _formKey,
@@ -100,6 +100,14 @@ class _AuthState extends State<Auth> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Image.asset(
+                  'assets/logo-nobg.png',
+                  width: 115,
+                  height: 115,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text(
                   register ? "Register" : "Login",
                   style: Theme.of(context).textTheme.headlineMedium,
@@ -149,15 +157,21 @@ class _AuthState extends State<Auth> {
                   validator: (v) => passwordError,
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton(
+                FilledButton(
                   onPressed: loading ? null : auth,
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  child: const Text("Submit"),
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontSize: 15.4,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                OutlinedButton(
+                ElevatedButton(
                   onPressed: () {
                     setState(() {
                       register = !register;
@@ -166,9 +180,13 @@ class _AuthState extends State<Auth> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  child: Text(register
-                      ? "Already have an account? Login"
-                      : "Don't have an account? Register"),
+                  child: Text(
+                    register
+                        ? "Already have an account? Login"
+                        : "Don't have an account? Register",
+                    style: const TextStyle(
+                        fontSize: 15.4, fontWeight: FontWeight.w500),
+                  ),
                 )
               ],
             ),

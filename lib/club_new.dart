@@ -24,6 +24,7 @@ class _ClubNewPageState extends State<ClubNewPage> {
       "name": name,
     });
 
+    // ignore: use_build_context_synchronously
     Navigator.popAndPushNamed(context, "/clubview",
         arguments: ClubViewArgs(club.id));
   }
@@ -33,7 +34,9 @@ class _ClubNewPageState extends State<ClubNewPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("CO₂mmuter"),
+        title: const Text(
+          "CO₂mmuter",
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -53,9 +56,12 @@ class _ClubNewPageState extends State<ClubNewPage> {
               },
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            FilledButton(
               onPressed: loading ? null : create,
-              child: const Text('Create Club'),
+              child: const Text(
+                'Create Club',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

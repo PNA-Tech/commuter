@@ -153,6 +153,7 @@ class _RecordPageState extends State<RecordPage> {
       saving = false;
       recording = false;
     });
+    // ignore: use_build_context_synchronously
     Navigator.pushNamed(context, "/view",
         arguments: ActivityViewArgs(activity.id));
   }
@@ -166,18 +167,34 @@ class _RecordPageState extends State<RecordPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           if (!recording && !saving) ...[
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    recording = true;
-                    currentActivity = Activity();
-                  });
-                },
-                child: const Text('Record Activity'),
+            Expanded(
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      recording = true;
+                      currentActivity = Activity();
+                    });
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.play_arrow),
+                      SizedBox(width: 5),
+                      Text(
+                        'Record Activity',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            )
+            ),
           ] else if (recording && !saving) ...[
+            const SizedBox(
+              height: 5,
+            ),
+            // Looks better with tiny bit of spacing
             ListTile(
               leading: const Icon(Icons.location_pin),
               title: const Text("Distance"),
@@ -188,7 +205,7 @@ class _RecordPageState extends State<RecordPage> {
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: const Icon(Icons.location_pin),
+              leading: const Icon(Icons.speed),
               title: const Text("Speed"),
               trailing: Chip(
                 label: Text(currentActivity.route.isNotEmpty
@@ -200,7 +217,7 @@ class _RecordPageState extends State<RecordPage> {
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: const Icon(Icons.location_pin),
+              leading: const Icon(Icons.timer),
               title: const Text("Time"),
               trailing: Chip(
                 label: Text(formatDuration(
@@ -217,7 +234,10 @@ class _RecordPageState extends State<RecordPage> {
                   currentActivity.end = DateTime.now();
                 });
               },
-              child: const Text('Stop Recording'),
+              child: const Text(
+                'Stop Recording',
+                // style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ] else ...[
             Text(
