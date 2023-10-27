@@ -1,4 +1,0 @@
-#Thu Oct 26 18:32:14 PDT 2023
-base.0=/Users/achar/Library/CloudStorage/OneDrive-Personal/Documents/GitHub/commuter/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
